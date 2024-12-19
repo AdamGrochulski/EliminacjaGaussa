@@ -1,19 +1,12 @@
 #include "gauss.h"
-
-
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
-#include "gauss.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
 int eliminate(Matrix *mat, Matrix *b){
-
 	unsigned int m_r = mat->r;
 	unsigned int m_c = mat->c;
 	int k = 0;
@@ -35,21 +28,14 @@ int eliminate(Matrix *mat, Matrix *b){
 			b->data[i][0]=b->data[i][0]-(first/pivot)*b->data[k][0];
 			i++;
 		}
-
 		j=0;
 		b->data[k][0]=b->data[k][0]/pivot;
 		while(j<m_r){
 			mat->data[k][j]=mat->data[k][j]/pivot;
-			if (mat->data[k][j]==-0){
-				mat->data[k][j]=0;
-			}
 			j++;
 		}
-
 		k++;
 	}
-
-
 
 	return 0;
 }
