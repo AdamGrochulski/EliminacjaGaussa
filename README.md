@@ -1,5 +1,6 @@
 Ćwiczenie 9 z labów JIMP.
--> wykonane przez:
+
+Wykonane przez:
 Student A - Kuba Zbucki
 Student B - Adam Grochulski
 
