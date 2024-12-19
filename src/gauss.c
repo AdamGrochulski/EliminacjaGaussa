@@ -24,21 +24,15 @@ int eliminate(Matrix *mat, Matrix *b){
 
 	while (k<m_r || k<m_c ) {
 		pivot = mat->data[k][k];
-		printf("Pivot: ");
-		printf("%f\n",pivot);
 		i = k+1;  
 		while(i<m_c){
 			j=0;
 			first=mat->data[i][k];
 			while(j<m_r) {
-				printf("Przed: %f\n",mat->data[i][j]);
 				mat->data[i][j]=mat->data[i][j]-(first/pivot)*mat->data[k][j];
-				printf("Po: %f\n",mat->data[i][j]);
 				j++;
 			}
-			printf("b Przed: %f\n",b->data[i][0]);
 			b->data[i][0]=b->data[i][0]-(first/pivot)*b->data[k][0];
-			printf("b Po: %f\n",b->data[i][0]);
 			i++;
 		}
 
