@@ -19,6 +19,14 @@ void row_changer(Matrix *mat, Matrix *b, int k, int p_i) {
 	}
 }
 
+double ABS(double number) {
+	if (number>=0)
+		return number;
+	else
+		return number * (-1);
+}
+
+
 int pivot_picker(Matrix *mat, int k) {
 	unsigned int m_c = mat->c;
 	int i=k;
@@ -27,10 +35,9 @@ int pivot_picker(Matrix *mat, int k) {
 	double max= 0;
 	while (i<m_c) {
 		number=mat->data[i][k];
-		printf("%f ", number);
-		if (abs(number)>=max) {
+		if (ABS(number)>=max) {
 			i_max=i;
-			max=abs(number);
+			max=ABS(number);
 		}
 		i++;
 	}
