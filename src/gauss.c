@@ -18,6 +18,7 @@ void pivotseeker(Matrix *mat, Matrix *b, int k){
 				maxpivot=abs(mat->data[k+pivotseek][k]);
 				maxpivotrow=k+pivotseek;
 			}
+			pivotseek++;
 		}
 	double* temporary=mat->data[k];
 	mat->data[k]=mat->data[maxpivotrow];
