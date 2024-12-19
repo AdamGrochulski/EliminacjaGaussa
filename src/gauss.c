@@ -76,8 +76,7 @@ int eliminate(Matrix *mat, Matrix *b){
 
 	while (k<m_r || k<m_c ) {
 
-		pivotseeker(mat,b,k);
-
+		//* pivotseeker(mat,b,k); Wywoływanie komendy studenta A, dodany komentarz, ponieważ wybraliśmy rozwiązanie studenta B
 
 		int p_i=pivot_picker(mat,k);
 
