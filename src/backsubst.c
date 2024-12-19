@@ -1,57 +1,41 @@
 #include "backsubst.h"
+#include <stdlib.h>
 /**
  * Zwraca 0 - wsteczne podstawienie zakonczone sukcesem
  * Zwraca 1 - błąd dzielenia przez 0 (element na diagonali = 0)
  * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
  */
 
-double previx(Matrix *x, Matrix *mat, Matrix *b, int row){
-	int i;
-	double output;
-	if (row==(mat->c)){
-		output=(b->data[row-1][0])/(mat->data[row-1][row-1]);
-	}
-	else{
-		double sum=(b->data[row-1][0]);
-		for(i=row-1;i<(mat->c);i++){
-			if (i!=row-1){
-				sum-=(mat->data[row-1][i])*previx(x,mat,b,row+i);
-				/*int j;
-				double szuk;
-				for (j = 1; j<mat->r;j++){
-				//szuk = (1/(mat->data[i][i]))*((b->data[i][0])-1); < poprawić ten syf
-				}*/
-			}
-			//sum -= każde a razy wynik x dla większego row
-		}
-		output=(1/(mat->data[row-1][row-1]))*sum;
-	}
-	return output;
-}
-
 int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
-				/*  
-				
-				double previous=1;
+	unsigned int m_r = mat->r;
+	unsigned int m_c = mat->c;
 
-				for(i=(mat->c)-1;i>0;i--){
-					int j;
-					double szuk;
-					for (j = 1; j<mat->r;j++){
-						//szuk = (1/(mat->data[i][i]))*((b->data[i][0])-1); < poprawić ten syf
-					}
-					x->data[i][0];
-				}
-				*/
-				//To ponizej jest przepisaniem b do x. Nalezy to popra
+	if (m_r!=m_c)
+		return 2;
 
-				int i;
-				for (i = 0; i < mat->c; i++) {
-								x->data[i][0] = previx(x,mat,b,i);
-				}
+	int k;
+	for(k=0;k<m_r;k++) {
+		if(mat->data[k][k]==0)
+			return 1;
+	}
 
-				return 0;
+	int i=m_c-1;
+	int j;
+	double s;
+
+	while (i >= 0) {
+		j=0;
+		while(j<m_r) {
+			s=s+(mat->data[i][j]*x->data[j][0]);
+			j++;
+		}
+		x->data[i][0]=b->data[i][0]-s;
+		s=0;
+		i--;
+	}
+	return 0;
 }
+
 
 
 
